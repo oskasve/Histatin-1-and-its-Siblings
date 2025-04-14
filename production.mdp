@@ -1,0 +1,67 @@
+; Run parameters
+integrator              = md           ; Leap-frog integrator
+dt                      = 0.002        ; Time step in ps
+nsteps                  = 1000000000   ; Number of steps
+
+;
+nstcomm                 = 100                     ; Frequency of updates
+comm_mode               = linear                  ; Translational motion removed
+comm_grps               = Protein Non-Protein     ; Groups subjected
+
+; Output control
+nstxout                 = 50000        ; Save coordinates in a .trr file every 5000 steps
+nstvout                 = 50000        ; Save velocites in a .trr file every 50000 steps
+nstfout                 = 50000        ; Save forces in a .trr file every 50000 steps 
+nstcalcenergy           = 100          ; Calculates energies every 100 steps
+nstenergy               = 1000         ; Save energies in a energy file every 1000 steps
+nstlog                  = 0            ; Save energies in a log file every 0 steps 
+nstxout-compressed      = 5000         ; Save coordinates to .xtc every 10 ps
+
+; Neighborsearching
+cutoff-scheme           = Verlet        ; Electrostatics handled with Verlet scheme
+ns_type                 = grid          ; Search neighboring grid cells
+nstlist                 = 20            ; Frequency of updates 
+rlist                   = 1.2           ; Cut-off radius
+
+; Van der Waals
+vdwtype                 = Cut-off         ; VdW handled with cut-off radius 
+vdw-modifier            = Force-switch    ; Force-switch modification applied 
+rvdw_switch             = 1.0             ; Switch radius
+rvdw                    = 1.2             ; Cut-off radius
+
+; Electrostatics
+coulombtype             = PME             ; Electrostatics handled with PME
+rcoulomb                = 1.2             ; Cut-off radius
+
+; Ewald
+pme_order       = 4             ; Cubic interpolation
+fourierspacing  = 0.16          ; Grid spacing for FFT
+
+; Temperature coupling is on
+tcoupl                  = Nose-Hoover             ; Thermostat
+tc_grps                 = Protein Non-Protein     ; Coupling groups
+tau_t                   = 1.0 1.0                 ; Constant
+ref_t                   = 298 298                 ; Temperature
+
+; Pressure coupling is on
+pcoupl                  = Parrinello-Rahman       ; Coupling method
+pcoupltype              = isotropic               ; Isotropic coupling
+tau_p                   = 5.0                     ; Constant
+compressibility         = 4.5e-5                  ; Compressibility
+ref_p                   = 1.0                     ; Pressure
+
+; Bond parameters
+constraints             = h-bonds   ; Bonds with hydrogen are constrained
+constraint_algorithm    = LINCS     ; Constraints are handled with the LINCS algorithm
+continuation            = yes       ; Follows step1
+lincs_iter              = 1         ; Accuracy of LINCS
+lincs_order             = 4         ; Also related to accuracy
+
+; Periodic boundary conditions
+pbc             = xyz           ; 3-D PBC
+
+; Dispersion correction
+DispCorr        = EnerPres      ; Account for cut-off vdW scheme
+
+; Velocity generation
+gen_vel         = no           ; Assign velocities from Maxwell distribution
