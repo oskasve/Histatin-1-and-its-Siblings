@@ -9,4 +9,10 @@ Contains files and scripts pretaining to article "Histatin 1 and its Siblings: D
 
 .py scripts are python scripts to perform the decomposition and contour plotting.
 
+.sh exact commands used when starting and restarting simulations on the LUNARC COSMOS cluster
+
 Force-field-files contains force field related files such as .itp files.
+
+CD-data contains all CD data
+
+SAXS-data contains all SAXS data
