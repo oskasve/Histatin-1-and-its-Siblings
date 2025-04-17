@@ -8,3 +8,5 @@ Contains files and scripts pretaining to article "Histatin 1 and its Siblings: D
 .ipynb files are jupyter notebooks which contain figure scripts
 
 .py scripts are python scripts to perform the decomposition and contour plotting.
+
+Force-field-files contains force field related files such as .itp files.
