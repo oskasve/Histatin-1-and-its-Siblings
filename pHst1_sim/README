@@ -1,1 +1,33 @@
+PREAMBLE
+
+AMBER99SB-ILDN with TIP4P-D was used for the simulations
+
+Parameters from http://amber.manchester.ac.uk was used to integrate phosphoserine residue
+
+Integration was achieved by:
+Adding all atoms, bonds and impropers with charge in the .rtp file for amino acids
+Adding all the new parameters with proper units
+Adding the new S1P residue to the aminoacids.hdb file in order to allow the use of -ignh
+Adding the tip4p-d.itp file and matching atomtypes with the forcefield
+Adding the tip4p-d force parameters to the ffnonbonded file
+
+Inital straight chain was made in Avogadro
+
+A phosphate group was built manually and the structure was optimized
+
+All atomtypes were manually matched to the forcefield and oriented so pdb2gmx would accept the .pdb file
+
+SETUP
+
+gmx pdb2gmx -f Hist-1_PO3H.pdb -ignh -his -o Hist-1_pH7_PO3H.gro
+
+Histidines are singly protonated on the NE2 position
+
+gmx editconf -f Hist-1_pH7_PO3H.gro -d 1.0 -bt dodecahedron -o Hist-1_box.gro
+
+gmx solvate -cp Hist-1_box.gro -cs tip4p.gro -p topol.top -o Hist-1_box_solv.gro
+
+gmx grompp -f ions.mdp -c Hist-1_box_solv.gro -p topol.top -o ions.tpr
+
+gmx genion -s ions.tpr -o Hist-1_box_solv_ions.gro -p topol.top -pname NA -nname CL -neutral -conc 0.150
 
