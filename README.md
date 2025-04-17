@@ -13,6 +13,6 @@ Contains files and scripts pretaining to article "Histatin 1 and its Siblings: D
 
 Force-field-files contains force field related files such as .itp files.
 
-CD-data contains all CD data
+CD_data contains all CD data
 
-SAXS-data contains all SAXS data
+SAXS_data contains all SAXS data
