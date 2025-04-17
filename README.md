@@ -16,3 +16,5 @@ Force-field-files contains force field related files such as .itp files.
 CD_data contains all CD data
 
 SAXS_data contains all SAXS data
+
+NR_data contains all NR data
